@@ -60,6 +60,10 @@ public:
 
             return temp;
       }
+
+    bool find(const pair<int,int>& p){
+        return graph[p.second][p.first]==1;
+    }
 };
 ostream& operator<<(ostream& os ,Proximity_matrix& p){
     return os << p.graph<<endl;
@@ -100,6 +104,14 @@ public:
 //        temp.erase(temp.begin());
 
         return gra[x-1];
+    }
+
+    bool find(const pair<int,int>& p){
+        auto a = gra[p.first-1] > gra[p.second-1] ? gra[p.second-1] : gra[p.first-1];
+        for (const auto &i : a)
+            if (i == p.first || i == p.second)
+                return true;
+        return false;
     }
 };
 ostream& operator<<(ostream& os,Proximity_List& p){
